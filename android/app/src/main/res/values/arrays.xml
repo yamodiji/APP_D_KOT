@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Icon Size Options -->
+    <string-array name="icon_size_entries">
+        <item>@string/icon_size_small</item>
+        <item>@string/icon_size_medium</item>
+        <item>@string/icon_size_large</item>
+        <item>@string/icon_size_extra_large</item>
+    </string-array>
+
+    <string-array name="icon_size_values">
+        <item>48</item>
+        <item>64</item>
+        <item>72</item>
+        <item>96</item>
+    </string-array>
+</resources> 

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        android:title="Appearance"
+        android:key="appearance_category">
+
+        <SwitchPreferenceCompat
+            android:key="dark_mode"
+            android:title="Dark Mode"
+            android:summary="Use dark theme"
+            android:defaultValue="false" />
+
+        <ListPreference
+            android:key="icon_size"
+            android:title="Icon Size"
+            android:summary="Choose app icon size"
+            android:entries="@array/icon_size_entries"
+            android:entryValues="@array/icon_size_values"
+            android:defaultValue="72" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Behavior"
+        android:key="behavior_category">
+
+        <SwitchPreferenceCompat
+            android:key="auto_focus"
+            android:title="Auto Focus Search"
+            android:summary="Automatically focus search box"
+            android:defaultValue="true" />
+
+        <SwitchPreferenceCompat
+            android:key="vibration"
+            android:title="Vibration Feedback"
+            android:summary="Vibrate on app launch"
+            android:defaultValue="true" />
+
+        <SwitchPreferenceCompat
+            android:key="finish_on_launch"
+            android:title="Close on Launch"
+            android:summary="Close launcher after opening app"
+            android:defaultValue="false" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen> 
