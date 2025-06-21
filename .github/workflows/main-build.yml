@@ -1,105 +1,42 @@
-name: 🚀 Build & Test & Release APK
+name: ⚡ Rapid Build & Release
 on:
   push:
     branches: [ main ]
   workflow_dispatch:
 
 jobs:
-  build-test-release:
-    name: 📱 Build → Test → Release
+  rapid-release:
+    name: ⚡ Build → Release
     runs-on: ubuntu-latest
     
     steps:
-    - name: 📥 Checkout Code
+    - name: 📥 Get Code
       uses: actions/checkout@v4
       
-    - name: ☕ Set up JDK 17
-      uses: actions/setup-java@v4
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-        
-    - name: 🔧 Setup Gradle
-      uses: gradle/gradle-build-action@v3
+    - name: ⚡ Setup Android
+      uses: android-actions/setup-android@v3
       
-    - name: 🏗️ Build Debug APK (for testing)
+    - name: 🚀 Build & Release APK
       run: |
         cd android
         chmod +x gradlew
-        ./gradlew assembleDebug
-        
-    - name: 🧪 Run Tests
-      run: |
-        cd android
-        ./gradlew test
-        ./gradlew connectedCheck || echo "No connected devices for instrumented tests"
-        
-    - name: 🚀 Build Release APK
-      run: |
-        cd android
         ./gradlew assembleRelease
         
-    - name: 📊 Get App Info
-      id: app_info
-      run: |
-        cd android
-        # Extract version from build.gradle
-        VERSION_NAME=$(grep "versionName" app/build.gradle | sed 's/.*versionName "\(.*\)".*/\1/')
-        VERSION_CODE=$(grep "versionCode" app/build.gradle | sed 's/.*versionCode \(.*\).*/\1/')
+        # Auto-release with timestamp
+        echo "APK_PATH=$(find app/build/outputs/apk/release -name "*.apk" | head -1)" >> $GITHUB_ENV
+        echo "RELEASE_TAG=v$(date +%Y%m%d-%H%M)" >> $GITHUB_ENV
         
-        # Fallback to timestamp if not found
-        if [ -z "$VERSION_NAME" ]; then
-          VERSION_NAME="1.0.$(date +%Y%m%d)"
-        fi
-        if [ -z "$VERSION_CODE" ]; then
-          VERSION_CODE=$(date +%Y%m%d)
-        fi
-        
-        echo "version_name=$VERSION_NAME" >> $GITHUB_OUTPUT
-        echo "version_code=$VERSION_CODE" >> $GITHUB_OUTPUT
-        echo "🔍 Detected Version: $VERSION_NAME ($VERSION_CODE)"
-        
-    - name: 📋 List Built APKs
-      run: |
-        echo "🔍 Built APK files:"
-        find android/app/build/outputs/apk -name "*.apk" -type f
-        ls -la android/app/build/outputs/apk/release/ || echo "No release APKs found"
-        ls -la android/app/build/outputs/apk/debug/ || echo "No debug APKs found"
-        
-    - name: 🎉 Create Release
+    - name: 🎉 Release APK
       uses: softprops/action-gh-release@v1
       with:
-        tag_name: v${{ steps.app_info.outputs.version_name }}-${{ github.run_number }}
-        name: 🚀 Speed Drawer v${{ steps.app_info.outputs.version_name }}
+        tag_name: ${{ env.RELEASE_TAG }}
+        name: ⚡ Speed Drawer ${{ env.RELEASE_TAG }}
         body: |
-          ## 🚀 Speed Drawer Kotlin Android
+          ## ⚡ Rapid Release
+          **📱 Ready to install!** Download APK below.
           
-          **📱 Build Info:**
-          - Version: ${{ steps.app_info.outputs.version_name }}
-          - Build: #${{ github.run_number }}
-          - Commit: ${{ github.sha }}
-          
-          **📱 What's New:**
-          - Native Kotlin Android app (78% smaller than Flutter)
-          - Material Design 3 with dark/light themes
-          - Fast search and favorites functionality
-          - Optimized performance and memory usage
-          
-          **📊 Performance:**
-          - APK Size: <10MB (vs ~45MB Flutter)
-          - RAM Usage: ~45MB (vs ~150MB Flutter)
-          - Cold Start: ~0.8s (vs ~3.2s Flutter)
-          
-          **🧪 Quality Assurance:**
-          - ✅ Unit tests passed
-          - ✅ Build verification completed
-          - ✅ Release APK generated
-          
-          **📥 Download the APK below and install on your Android device!**
-        files: |
-          android/app/build/outputs/apk/release/*.apk
-          android/app/build/outputs/apk/debug/*.apk
+          **🚀 Performance:** <10MB, Native Kotlin, Material Design 3
+        files: ${{ env.APK_PATH }}
         draft: false
-        prerelease: false
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
