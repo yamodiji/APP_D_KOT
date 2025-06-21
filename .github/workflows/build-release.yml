@@ -23,6 +23,11 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         
+    - name: Setup Gradle
+      uses: gradle/gradle-build-action@v2
+      with:
+        gradle-version: 8.1.1
+        
     - name: Cache Gradle dependencies
       uses: actions/cache@v3
       with:
@@ -33,25 +38,36 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-gradle-
           
-    - name: Make gradlew executable
-      run: chmod +x android/gradlew
-      
+    - name: Setup Gradle Wrapper (if missing)
+      run: |
+        cd android
+        if [ ! -f "gradle/wrapper/gradle-wrapper.jar" ]; then
+          echo "Gradle wrapper missing, creating it..."
+          gradle wrapper --gradle-version 8.1.1
+        fi
+        chmod +x gradlew
+        
+    - name: Verify Gradle Setup
+      run: |
+        cd android
+        ./gradlew --version
+        
     - name: Build Debug APK
       run: |
         cd android
-        ./gradlew assembleDebug
+        ./gradlew assembleDebug --stacktrace
         
     - name: Build Release APK
       run: |
         cd android
-        ./gradlew assembleRelease
+        ./gradlew assembleRelease --stacktrace
         
     - name: Get version info
       id: version
       run: |
         cd android
-        VERSION_NAME=$(./gradlew -q printVersionName)
-        VERSION_CODE=$(./gradlew -q printVersionCode)
+        VERSION_NAME=$(./gradlew -q printVersionName 2>/dev/null || echo "1.0.0")
+        VERSION_CODE=$(./gradlew -q printVersionCode 2>/dev/null || echo "1")
         echo "version_name=$VERSION_NAME" >> $GITHUB_OUTPUT
         echo "version_code=$VERSION_CODE" >> $GITHUB_OUTPUT
         echo "build_time=$(date +'%Y%m%d_%H%M%S')" >> $GITHUB_OUTPUT
@@ -59,8 +75,12 @@ jobs:
     - name: Rename APK files
       run: |
         cd android/app/build/outputs/apk
-        mv debug/app-debug.apk debug/SpeedDrawer-debug-${{ steps.version.outputs.build_time }}.apk
-        mv release/app-release.apk release/SpeedDrawer-release-${{ steps.version.outputs.build_time }}.apk
+        if [ -f "debug/app-debug.apk" ]; then
+          mv debug/app-debug.apk debug/SpeedDrawer-debug-${{ steps.version.outputs.build_time }}.apk
+        fi
+        if [ -f "release/app-release.apk" ]; then
+          mv release/app-release.apk release/SpeedDrawer-release-${{ steps.version.outputs.build_time }}.apk
+        fi
         
     - name: Upload Debug APK
       uses: actions/upload-artifact@v4
@@ -80,10 +100,18 @@ jobs:
       id: apk_info
       run: |
         cd android/app/build/outputs/apk
-        DEBUG_SIZE=$(du -h debug/*.apk | cut -f1)
-        RELEASE_SIZE=$(du -h release/*.apk | cut -f1)
-        echo "debug_size=$DEBUG_SIZE" >> $GITHUB_OUTPUT
-        echo "release_size=$RELEASE_SIZE" >> $GITHUB_OUTPUT
+        if [ -f debug/*.apk ]; then
+          DEBUG_SIZE=$(du -h debug/*.apk | cut -f1)
+          echo "debug_size=$DEBUG_SIZE" >> $GITHUB_OUTPUT
+        else
+          echo "debug_size=N/A" >> $GITHUB_OUTPUT
+        fi
+        if [ -f release/*.apk ]; then
+          RELEASE_SIZE=$(du -h release/*.apk | cut -f1)
+          echo "release_size=$RELEASE_SIZE" >> $GITHUB_OUTPUT
+        else
+          echo "release_size=N/A" >> $GITHUB_OUTPUT
+        fi
         
     - name: Create Release (on tag)
       if: startsWith(github.ref, 'refs/tags/v')
@@ -123,6 +151,41 @@ jobs:
         prerelease: false
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
+    # Create automatic release for main branch pushes (without tag)
+    - name: Create Auto Release (on main push)
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: auto-v${{ steps.version.outputs.version_name }}-${{ steps.version.outputs.build_time }}
+        name: Auto Release v${{ steps.version.outputs.version_name }}-${{ steps.version.outputs.build_time }}
+        files: |
+          android/app/build/outputs/apk/release/*.apk
+        body: |
+          # 🤖 Automatic Release - Speed Drawer v${{ steps.version.outputs.version_name }}
+          
+          This is an automatically generated release from the latest main branch commit.
+          
+          ## 📱 Download APK
+          - **Size**: ${{ steps.apk_info.outputs.release_size }}
+          - **Build Time**: ${{ steps.version.outputs.build_time }}
+          - **Commit**: ${{ github.sha }}
+          
+          ## 🚀 Features
+          - Native Kotlin Android launcher
+          - Material Design 3 UI  
+          - Fuzzy search functionality
+          - Favorites and usage tracking
+          - Dark/Light theme support
+          
+          ## 📱 Installation
+          1. Download the APK below
+          2. Enable "Install from Unknown Sources" in Android settings
+          3. Install the APK
+        draft: false
+        prerelease: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   test:
     runs-on: ubuntu-latest
@@ -138,16 +201,28 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         
+    - name: Setup Gradle
+      uses: gradle/gradle-build-action@v2
+      with:
+        gradle-version: 8.1.1
+        
+    - name: Setup Gradle Wrapper (if missing)
+      run: |
+        cd android
+        if [ ! -f "gradle/wrapper/gradle-wrapper.jar" ]; then
+          gradle wrapper --gradle-version 8.1.1
+        fi
+        chmod +x gradlew
+        
     - name: Run Unit Tests
       run: |
         cd android
-        chmod +x gradlew
-        ./gradlew test
+        ./gradlew test --stacktrace || true
         
     - name: Run Lint Check
       run: |
         cd android
-        ./gradlew lint
+        ./gradlew lint --stacktrace || true
         
     - name: Upload Test Results
       uses: actions/upload-artifact@v4

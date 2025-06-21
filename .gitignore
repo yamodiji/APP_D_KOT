@@ -109,8 +109,11 @@ local.properties
 .gradle/
 build/
 gradle-app.setting
+# IMPORTANT: Include gradle wrapper files for GitHub Actions
 !gradle-wrapper.jar
 !gradle-wrapper.properties
+!gradlew
+!gradlew.bat
 
 # APK Files
 *.apk
@@ -227,13 +230,13 @@ Desktop.ini
 *.o
 *.so
 
-# Archives
+# Archives - EXCEPT gradle wrapper jar
 *.7z
-*.jar
 *.rar
 *.zip
 *.tar.gz
 *.tgz
+# !gradle-wrapper.jar is already specified above
 
 # Logs and databases
 *.log
