@@ -28,7 +28,7 @@ class AppAdapter(
         fun bind(app: AppInfo) {
             binding.apply {
                 // Set app name
-                appNameText.text = app.displayName
+                appName.text = app.displayName
                 
                 // Set app icon
                 app.icon?.let { icon ->
@@ -45,7 +45,7 @@ class AppAdapter(
                 appIcon.layoutParams = layoutParams
                 
                 // Show favorite indicator
-                favoriteIndicator.visibility = if (app.isFavorite) {
+                favoriteIcon.visibility = if (app.isFavorite) {
                     android.view.View.VISIBLE
                 } else {
                     android.view.View.GONE
