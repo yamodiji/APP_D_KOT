@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!-- Spacing -->
+    <dimen name="spacing_tiny">4dp</dimen>
+    <dimen name="spacing_small">8dp</dimen>
+    <dimen name="spacing_medium">16dp</dimen>
+    <dimen name="spacing_large">24dp</dimen>
+    <dimen name="spacing_xlarge">32dp</dimen>
+    <dimen name="spacing_xxlarge">48dp</dimen>
+    
+    <!-- Padding -->
+    <dimen name="padding_tiny">4dp</dimen>
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="padding_medium">16dp</dimen>
+    <dimen name="padding_large">24dp</dimen>
+    <dimen name="padding_xlarge">32dp</dimen>
+    
+    <!-- Margins -->
+    <dimen name="margin_tiny">4dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_medium">16dp</dimen>
+    <dimen name="margin_large">24dp</dimen>
+    <dimen name="margin_xlarge">32dp</dimen>
+    
+    <!-- App Icon Sizes -->
+    <dimen name="icon_size_small">48dp</dimen>
+    <dimen name="icon_size_medium">64dp</dimen>
+    <dimen name="icon_size_large">80dp</dimen>
+    <dimen name="icon_size_xlarge">96dp</dimen>
+    
+    <!-- UI Element Sizes -->
+    <dimen name="toolbar_height">56dp</dimen>
+    <dimen name="search_bar_height">48dp</dimen>
+    <dimen name="button_height">48dp</dimen>
+    <dimen name="list_item_height">72dp</dimen>
+    <dimen name="grid_item_width">96dp</dimen>
+    <dimen name="grid_item_height">112dp</dimen>
+    
+    <!-- Corner Radius -->
+    <dimen name="corner_radius_small">4dp</dimen>
+    <dimen name="corner_radius_medium">8dp</dimen>
+    <dimen name="corner_radius_large">12dp</dimen>
+    <dimen name="corner_radius_xlarge">16dp</dimen>
+    
+    <!-- Elevation -->
+    <dimen name="elevation_small">2dp</dimen>
+    <dimen name="elevation_medium">4dp</dimen>
+    <dimen name="elevation_large">8dp</dimen>
+    <dimen name="elevation_xlarge">12dp</dimen>
+    
+    <!-- Text Sizes -->
+    <dimen name="text_size_tiny">10sp</dimen>
+    <dimen name="text_size_small">12sp</dimen>
+    <dimen name="text_size_medium">14sp</dimen>
+    <dimen name="text_size_large">16sp</dimen>
+    <dimen name="text_size_xlarge">18sp</dimen>
+    <dimen name="text_size_xxlarge">20sp</dimen>
+    <dimen name="text_size_title">24sp</dimen>
+    <dimen name="text_size_headline">28sp</dimen>
+    
+    <!-- RecyclerView -->
+    <dimen name="recycler_padding">8dp</dimen>
+    <dimen name="item_padding">8dp</dimen>
+    <dimen name="item_spacing">4dp</dimen>
+    
+    <!-- Search Bar -->
+    <dimen name="search_bar_margin">16dp</dimen>
+    <dimen name="search_bar_padding">8dp</dimen>
+    <dimen name="search_icon_size">24dp</dimen>
+    
+    <!-- Most Used Section -->
+    <dimen name="most_used_item_width">80dp</dimen>
+    <dimen name="most_used_item_height">96dp</dimen>
+    <dimen name="most_used_icon_size">56dp</dimen>
+    
+    <!-- Favorite Indicator -->
+    <dimen name="favorite_indicator_size">16dp</dimen>
+    <dimen name="favorite_indicator_margin">4dp</dimen>
+    
+    <!-- Dialogs -->
+    <dimen name="dialog_margin">24dp</dimen>
+    <dimen name="dialog_padding">20dp</dimen>
+    <dimen name="dialog_button_height">36dp</dimen>
+    
+    <!-- Settings -->
+    <dimen name="settings_icon_size">24dp</dimen>
+    <dimen name="settings_item_padding">16dp</dimen>
+    <dimen name="settings_divider_height">1dp</dimen>
+    
+    <!-- Bottom Sheet -->
+    <dimen name="bottom_sheet_peek_height">200dp</dimen>
+    <dimen name="bottom_sheet_corner_radius">16dp</dimen>
+    
+    <!-- App Item Dimensions -->
+    <dimen name="app_item_width">88dp</dimen>
+    <dimen name="app_item_text_width">80dp</dimen>
+    <dimen name="app_name_margin_top">4dp</dimen>
+    
+    <!-- Grid Layout -->
+    <dimen name="grid_spacing">4dp</dimen>
+    <dimen name="grid_padding">8dp</dimen>
+    
+    <!-- Empty State -->
+    <dimen name="empty_state_icon_size">64dp</dimen>
+    <dimen name="empty_state_spacing">16dp</dimen>
+    
+</resources> 

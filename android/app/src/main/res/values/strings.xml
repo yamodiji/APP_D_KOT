@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Speed Drawer</string>
+    
+    <!-- Main Activity -->
+    <string name="search_hint">Search apps…</string>
+    <string name="search_icon_desc">Search icon</string>
+    <string name="clear_search_desc">Clear search</string>
+    <string name="settings_desc">Settings</string>
+    <string name="app_icon_desc">App icon</string>
+    <string name="favorite_app_desc">Favorite app</string>
+    
+    <!-- Empty States -->
+    <string name="no_apps_found">No apps found</string>
+    <string name="no_apps_found_desc">Try a different search term</string>
+    <string name="loading_apps">Loading apps…</string>
+    
+    <!-- Most Used -->
+    <string name="most_used_apps">Most Used</string>
+    <string name="recently_used_apps">Recently Used</string>
+    <string name="favorite_apps">Favorites</string>
+    
+    <!-- App Actions -->
+    <string name="launch_app">Launch %1$s</string>
+    <string name="app_info">App info</string>
+    <string name="add_to_favorites">Add to favorites</string>
+    <string name="remove_from_favorites">Remove from favorites</string>
+    <string name="uninstall_app">Uninstall</string>
+    <string name="app_settings">App settings</string>
+    
+    <!-- Error Messages -->
+    <string name="failed_to_launch">Failed to launch %1$s</string>
+    <string name="cannot_launch_app">Cannot launch %1$s</string>
+    <string name="app_not_found">App not found</string>
+    <string name="permission_required">Permission required</string>
+    
+    <!-- Settings -->
+    <string name="settings">Settings</string>
+    <string name="appearance">Appearance</string>
+    <string name="behavior">Behavior</string>
+    <string name="advanced">Advanced</string>
+    <string name="about">About</string>
+    
+    <!-- Appearance Settings -->
+    <string name="dark_mode">Dark mode</string>
+    <string name="dark_mode_desc">Use dark theme</string>
+    <string name="icon_size">Icon size</string>
+    <string name="icon_size_desc">Size of app icons</string>
+    <string name="animations">Animations</string>
+    <string name="animations_desc">Enable smooth animations</string>
+    
+    <!-- Behavior Settings -->
+    <string name="auto_focus">Auto focus search</string>
+    <string name="auto_focus_desc">Automatically focus search bar when app opens</string>
+    <string name="vibration">Vibration feedback</string>
+    <string name="vibration_desc">Vibrate on app interactions</string>
+    <string name="show_most_used">Show most used apps</string>
+    <string name="show_most_used_desc">Display frequently used apps at the top</string>
+    <string name="clear_search_on_resume">Clear search on resume</string>
+    <string name="clear_search_on_resume_desc">Clear search text when returning to app</string>
+    <string name="finish_on_launch">Close after launch</string>
+    <string name="finish_on_launch_desc">Close Speed Drawer after launching an app</string>
+    <string name="fuzzy_search">Fuzzy search</string>
+    <string name="fuzzy_search_desc">Enable intelligent search matching</string>
+    
+    <!-- Advanced Settings -->
+    <string name="reset_usage_data">Reset usage data</string>
+    <string name="reset_usage_data_desc">Clear all app launch counts and statistics</string>
+    <string name="reset_favorites">Reset favorites</string>
+    <string name="reset_favorites_desc">Remove all favorite apps</string>
+    <string name="reset_all_settings">Reset all settings</string>
+    <string name="reset_all_settings_desc">Reset all preferences to defaults</string>
+    <string name="export_settings">Export settings</string>
+    <string name="export_settings_desc">Save settings to file</string>
+    <string name="import_settings">Import settings</string>
+    <string name="import_settings_desc">Load settings from file</string>
+    
+    <!-- About -->
+    <string name="version">Version</string>
+    <string name="build_info">Build %1$s</string>
+    <string name="developer">Developer</string>
+    <string name="github">GitHub</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="terms_of_service">Terms of Service</string>
+    <string name="send_feedback">Send Feedback</string>
+    <string name="rate_app">Rate this app</string>
+    <string name="share_app">Share app</string>
+    
+    <!-- Icon Size Options -->
+    <string name="icon_size_small">Small</string>
+    <string name="icon_size_medium">Medium</string>
+    <string name="icon_size_large">Large</string>
+    <string name="icon_size_extra_large">Extra Large</string>
+    
+    <!-- Confirmation Dialogs -->
+    <string name="confirm_reset_usage">Reset usage data?</string>
+    <string name="confirm_reset_usage_desc">This will clear all app launch counts and usage statistics. This action cannot be undone.</string>
+    <string name="confirm_reset_favorites">Reset favorites?</string>
+    <string name="confirm_reset_favorites_desc">This will remove all apps from your favorites list. This action cannot be undone.</string>
+    <string name="confirm_reset_settings">Reset all settings?</string>
+    <string name="confirm_reset_settings_desc">This will reset all preferences to their default values. This action cannot be undone.</string>
+    <string name="confirm_uninstall">Uninstall %1$s?</string>
+    <string name="confirm_uninstall_desc">This will permanently remove the app from your device.</string>
+    
+    <!-- Generic Actions -->
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="done">Done</string>
+    <string name="save">Save</string>
+    <string name="reset">Reset</string>
+    <string name="delete">Delete</string>
+    <string name="share">Share</string>
+    <string name="close">Close</string>
+    
+    <!-- Toast Messages -->
+    <string name="settings_reset">Settings reset to defaults</string>
+    <string name="usage_data_reset">Usage data cleared</string>
+    <string name="favorites_reset">Favorites cleared</string>
+    <string name="added_to_favorites">Added to favorites</string>
+    <string name="removed_from_favorites">Removed from favorites</string>
+    <string name="settings_exported">Settings exported</string>
+    <string name="settings_imported">Settings imported</string>
+    <string name="export_failed">Export failed</string>
+    <string name="import_failed">Import failed</string>
+    
+    <!-- Accessibility -->
+    <string name="navigate_up">Navigate up</string>
+    <string name="more_options">More options</string>
+    <string name="expand_menu">Expand menu</string>
+    <string name="collapse_menu">Collapse menu</string>
+</resources> 
